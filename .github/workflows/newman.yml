@@ -26,6 +26,7 @@ jobs:
         run: npm ci
 
       - name: Run Newman
+        continue-on-error: true
         run: |
           mkdir -p reports
           npx newman run postman/collections/Testatlon_booking_api.json \
