@@ -1,0 +1,12 @@
+{
+  "name": "api-test",
+  "version": "1.0.0",
+  "description": "API tests using Newman (Postman CLI runner)",
+  "scripts": {
+    "test": "newman run postman/collections/Testatlon_booking_api.json -r cli,htmlextra --reporter-htmlextra-export reports/newman-report.html"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}

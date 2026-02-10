@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   newman:
     runs-on: ubuntu-latest
@@ -23,13 +28,37 @@ jobs:
       - name: Run Newman
         run: |
           mkdir -p reports
-          npx newman run postman/testathon_booking_api.json \
+          npx newman run postman/collections/Testatlon_booking_api.json \
             -r cli,htmlextra \
-            --reporter-htmlextra-export reports/newman-report.html
+            --reporter-htmlextra-export reports/index.html
 
-      - name: Upload Newman report
+      - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: newman-report
-          path: reports/newman-report.html
+          path: reports/index.html
+
+      - name: Upload Pages artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports/
+
+  deploy-report:
+    needs: newman
+    if: always()
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
