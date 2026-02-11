@@ -30,6 +30,7 @@ jobs:
         run: |
           mkdir -p reports
           npx newman run postman/collections/Testatlon_booking_api.json \
+            --delay-request 10 \
             -r cli,htmlextra \
             --reporter-htmlextra-export reports/index.html
 
