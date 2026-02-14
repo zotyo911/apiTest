@@ -34,6 +34,13 @@ jobs:
             -r cli,htmlextra \
             --reporter-htmlextra-export reports/index.html
 
+      - name: Ensure report for Pages
+        if: always()
+        run: |
+          if [ ! -f reports/index.html ]; then
+            echo '<html><body><h1>No report generated</h1><p>Newman did not produce a report this run.</p></body></html>' > reports/index.html
+          fi
+
       - name: Upload artifact
         if: always()
         uses: actions/upload-artifact@v4
@@ -41,17 +48,11 @@ jobs:
           name: newman-report
           path: reports/index.html
 
-      - name: Prepare Pages deployment
-        if: always()
-        run: |
-          mkdir -p pages-deploy
-          cp reports/index.html pages-deploy/
-
       - name: Upload Pages artifact
         if: always()
         uses: actions/upload-pages-artifact@v3
         with:
-          path: pages-deploy/
+          path: reports/
 
   deploy-report:
     needs: newman
