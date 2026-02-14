@@ -32,13 +32,16 @@ jobs:
           npx newman run postman/collections/Testatlon_booking_api.json \
             --delay-request 10 \
             -r cli,htmlextra \
-            --reporter-htmlextra-export reports/index.html
+            --reporter-htmlextra-export reports/newman-report.html
 
-      - name: Ensure report for Pages
+      - name: Prepare report for Pages
         if: always()
         run: |
-          if [ ! -f reports/index.html ]; then
-            echo '<html><body><h1>No report generated</h1><p>Newman did not produce a report this run.</p></body></html>' > reports/index.html
+          mkdir -p pages-deploy
+          if [ -f reports/newman-report.html ]; then
+            cp reports/newman-report.html pages-deploy/index.html
+          else
+            echo '<html><body><h1>No report generated</h1><p>Newman did not produce a report this run.</p></body></html>' > pages-deploy/index.html
           fi
 
       - name: Upload artifact
@@ -46,13 +49,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: newman-report
-          path: reports/index.html
+          path: pages-deploy/index.html
 
       - name: Upload Pages artifact
         if: always()
         uses: actions/upload-pages-artifact@v3
         with:
-          path: reports/
+          path: pages-deploy/
 
   deploy-report:
     needs: newman
