@@ -235,7 +235,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstname\": \"Roland\",\n  \"lastname\": \"Czegledi\",\n  \"totalprice\": \"123\",\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-03-01\",\n    \"checkout\": \"2026-03-10\"\n  },\n  \"additionalneeds\": \"Breakfast\"\n}"
+              "raw": "{\n  \"firstname\": \"Elek\",\n  \"lastname\": \"Teszt\",\n  \"totalprice\": \"123\",\n  \"depositpaid\": true,\n  \"bookingdates\": {\n    \"checkin\": \"2026-03-01\",\n    \"checkout\": \"2026-03-10\"\n  },\n  \"additionalneeds\": \"Breakfast\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/booking",
@@ -293,7 +293,7 @@
                   "  \"additionalProperties\": true",
                   "};",
                   "",
-                  "pm.test('Status 200/201', () => pm.expect(pm.response.code).to.be.oneOf([200, 201]));",
+                  "pm.test('Status 200', () => pm.response.to.have.status(200));",
                   "pm.test('Body is JSON', () => pm.response.to.be.json);",
                   "pm.test('CreateBookingResponse matches schema', () => pm.response.to.have.jsonSchema(CreateBookingResponseSchema));",
                   "",
@@ -584,7 +584,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstname\": \"RolandUpdated\",\n  \"lastname\": \"Czegledi\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
+              "raw": "{\n  \"firstname\": \"ElekUpdate\",\n  \"lastname\": \"Teszt\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/booking/{{bookingId}}",
@@ -630,7 +630,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstname\": \"RolandUpdated\",\n  \"lastname\": \"Czegledi\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
+              "raw": "{\n  \"firstname\": \"ElekUpdate\",\n  \"lastname\": \"Teszt\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/booking/{{bookingId}}",
@@ -680,7 +680,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstname\": \"RolandUpdated\",\n  \"lastname\": \"Czegledi\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
+              "raw": "{\n  \"firstname\": \"ElekUpdate\",\n  \"lastname\": \"Teszt\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/booking/{{invalidbookingId}}",
@@ -798,7 +798,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstname\": \"RolandUpdated\",\n  \"lastname\": \"Czegledi\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
+              "raw": "{\n  \"additionalneeds\": \"Breakfast + Parking\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/booking/{{bookingId}}",
@@ -844,7 +844,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstname\": \"RolandUpdated\",\n  \"lastname\": \"Czegledi\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
+              "raw": "{\n  \"additionalneeds\": \"Breakfast + Parking\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/booking/{{bookingId}}",
@@ -894,7 +894,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"firstname\": \"RolandUpdated\",\n  \"lastname\": \"Czegledi\",\n  \"totalprice\": 999,\n  \"depositpaid\": false,\n  \"bookingdates\": {\n    \"checkin\": \"2026-04-01\",\n    \"checkout\": \"2026-04-05\"\n  },\n  \"additionalneeds\": \"Late checkout\"\n}"
+              "raw": "{\n  \"additionalneeds\": \"Breakfast + Parking\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/booking/{{invalidbookingId}}",
@@ -915,12 +915,12 @@
             {
               "listen": "test",
               "script": {
-                "type": "text/javascript",
                 "exec": [
-                  "pm.test('Status is 200/201/204 (depends on implementation)', function () {",
-                  "  pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
-                  "});"
-                ]
+                  "pm.test('Status 201', () => pm.response.to.have.status(201));"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
