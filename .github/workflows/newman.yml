@@ -41,11 +41,17 @@ jobs:
           name: newman-report
           path: reports/index.html
 
+      - name: Prepare Pages deployment
+        if: always()
+        run: |
+          mkdir -p pages-deploy
+          cp reports/index.html pages-deploy/
+
       - name: Upload Pages artifact
         if: always()
         uses: actions/upload-pages-artifact@v3
         with:
-          path: reports/
+          path: pages-deploy/
 
   deploy-report:
     needs: newman
